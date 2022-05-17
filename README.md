@@ -1,9 +1,14 @@
 # PHP Masterclass
 
-## Quick info:
-? PHP course
-@ Agiledrop
-[17.5.2022 - ?]
+## Quick info
+
+:question: PHP course
+
+:house: Agiledrop
+
+:hourglass: [17.5.2022 - ?]
+
+## Description
 
 PHP Masterclass at Agiledrop
 
