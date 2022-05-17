@@ -30,26 +30,26 @@
   <!-- Page content-->
   <div class="container">
     <?php 
-      include 'helpers/posts.php';
-    
-      foreach($posts as $num => $post) {
-        print '<div class="card">';
-        print "<h2>" . $post["title"] . "</h2>";
-        if($post["image"] != null) {
-          print '<img src="' . $post["image"]["url"] . '" alt="' . $post["image"]["alt"] . '">';
+        include 'helpers/posts.php';
+
+        $id = $_GET["id"];
+
+        if(!array_key_exists($id, $posts)) {
+            header("Location: 404.php?error='article_not_found'");
+            die();
         }
 
-        $content = substr($post["content"], 0, 150);
-        $content = strrev($content);
-        $content = substr($content, strpos($content, " "));
-        $content = strrev($content);
+        $post = $posts[$id];
 
-        print '<p>' . $content . '...</p>';
-        print '<a href="article.php?id=' . $num . '">Read more</a>';
+        print '<div class="full-post">';
+        print "<h2>" . $post["title"] . "</h2>";
+        if($post["image"] != null) {
+            print '<img src="' . $post["image"]["url"] . '" alt="' . $post["image"]["alt"] . '">';
+        }
+        print '<p>' . $post["content"] . '</p>';
         print '<div class="author">' . $post["authored by"] . '</div>';
         print '<div class="time">' . date('d.m.Y', $post["authored on"]) . '</div>';
-        print '</div>';
-      }
+        print '</div>';    
     ?>
   </div>
   <!-- Bootstrap core JS-->
