@@ -32,24 +32,13 @@
     <?php 
       include 'helpers/posts.php';
     
+      print '<div class="container-sm">';
+
       foreach($posts as $num => $post) {
-        print '<div class="card">';
-        print "<h2>" . $post["title"] . "</h2>";
-        if($post["image"] != null) {
-          print '<img src="' . $post["image"]["url"] . '" alt="' . $post["image"]["alt"] . '">';
-        }
-
-        $content = substr($post["content"], 0, 150);
-        $content = strrev($content);
-        $content = substr($content, strpos($content, " "));
-        $content = strrev($content);
-
-        print '<p>' . $content . '...</p>';
-        print '<a href="article.php?id=' . $num . '">Read more</a>';
-        print '<div class="author">' . $post["authored by"] . '</div>';
-        print '<div class="time">' . date('d.m.Y', $post["authored on"]) . '</div>';
-        print '</div>';
+        printPost($post);
       }
+
+      print '</div>';
     ?>
   </div>
   <!-- Bootstrap core JS-->
@@ -58,3 +47,25 @@
   <script src="js/scripts.js"></script>
   </body>
 </html>
+
+<?php
+  function printPost($post) {
+    print '<div class="card">';
+    print "<h2>" . $post["title"] . "</h2>";
+    if($post["image"] != null) {
+      print '<img class="img-fluid" src="' . $post["image"]["url"] . '" alt="' . $post["image"]["alt"] . '">';
+    }
+
+    $content = substr($post["content"], 0, 150);
+    $content = strrev($content);
+    $content = substr($content, strpos($content, " "));
+    $content = strrev($content);
+
+    print '<p>' . $content . '...</p>';
+    print '<a href="article.php?id=' . $num . '">Read more</a>';
+    print '<div class="author">' . $post["authored by"] . '</div>';
+    print '<div class="time">' . date('d.m.Y', $post["authored on"]) . '</div>';
+    print '</div>';
+  }
+
+?>

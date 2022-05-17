@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+  <?php
+        include 'helpers/posts.php';
+
+        $id = $_GET["id"];
+
+        if(!array_key_exists($id, $posts)) {
+            header("Location: 404.php?error=Article not found");
+            die();
+        }
+
+        $post = $posts[$id];
+  ?>
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>Proceduralni CMS - Agiledrop PHP-Masterclass</title>
+    <title><?= $post["title"]; ?></title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -30,17 +42,6 @@
   <!-- Page content-->
   <div class="container">
     <?php 
-        include 'helpers/posts.php';
-
-        $id = $_GET["id"];
-
-        if(!array_key_exists($id, $posts)) {
-            header("Location: 404.php?error='article_not_found'");
-            die();
-        }
-
-        $post = $posts[$id];
-
         print '<div class="full-post">';
         print "<h2>" . $post["title"] . "</h2>";
         if($post["image"] != null) {
