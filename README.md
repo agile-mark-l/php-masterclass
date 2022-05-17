@@ -1,8 +1,9 @@
 # PHP Masterclass
 
-### ? PHP course
-### @ Agiledrop
-### [17.5.2022 - ?]
+## Quick info:
+? PHP course
+@ Agiledrop
+[17.5.2022 - ?]
 
 PHP Masterclass at Agiledrop
 
