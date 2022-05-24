@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <?php
-        include 'helpers/posts.php';
+    include 'inc/functions.php';
 
-        $id = $_GET["id"];
+    $id = $_GET["id"];
 
-        if(!array_key_exists($id, $posts)) {
-            header("Location: 404.php?error=Article not found");
-            die();
-        }
-
-        $post = $posts[$id];
+    $post = getPost($id);
+    if (!$post) {
+      header('Location: 404.php?error=Article not found');
+      die();
+    }
+    echo $post->izpisiCeloto();
   ?>
   <head>
     <meta charset="utf-8"/>

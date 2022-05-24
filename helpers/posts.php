@@ -52,3 +52,7 @@ $posts = [
     "authored by" => 'Janez Novak',
   ],
 ];
+
+function getPosts() {
+    return $this->posts;
+}

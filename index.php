@@ -29,10 +29,14 @@
   </nav>
   <!-- Page content-->
   <div class="container">
-    <?php 
-      include 'helpers/posts.php';
+    <?php
+    include 'inc/functions.php';
+    include 'inc/post.php';
     
       print '<div class="container-sm">';
+
+
+    $post = getPost($id);
 
       foreach($posts as $num => $post) {
         printPost($post);
@@ -51,15 +55,10 @@
 <?php
   function printPost($post) {
     print '<div class="card">';
-    print "<h2>" . $post["title"] . "</h2>";
+    print "<h2>" . $post->izpisiNalsov() . "</h2>";
     if($post["image"] != null) {
       print '<img class="img-fluid" src="' . $post["image"]["url"] . '" alt="' . $post["image"]["alt"] . '">';
     }
-
-    $content = substr($post["content"], 0, 150);
-    $content = strrev($content);
-    $content = substr($content, strpos($content, " "));
-    $content = strrev($content);
 
     print '<p>' . $content . '...</p>';
     print '<a href="article.php?id=' . $num . '">Read more</a>';
